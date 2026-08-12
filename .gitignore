@@ -1,4 +1,5 @@
-
+.env
+secrets.local.env
 # Playwright
 node_modules/
 /test-results/
