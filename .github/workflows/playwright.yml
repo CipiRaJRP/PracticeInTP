@@ -16,23 +16,29 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v5
         with:
-          node-version: 22  
+          node-version: 22 
+
       - name: Create .env
+        working-directory: UITesting
         run: 
           echo "BASEURL=${{ vars.BASEURL }}" > .env
 
       - name: Create secrets.local.env
+        working-directory: UITesting
         run: |
           echo "CARD_NUMBER=${{ secrets.CARD_NUMBER }}" > secrets.local.env
           echo "EXPIRY=${{ secrets.EXPIRY }}" >> secrets.local.env
           echo "CVV=${{ secrets.CVV }}" >> secrets.local.env
       - name: Install Dependencies
+        working-directory: UITesting
         run: npm ci
         
       - name: Install Browsers
+        working-directory: UITesting
         run: npx playwright install --with-deps
 
       - name: Run playwright Test 
+        working-directory: UITesting
         run: npx playwright test
         
       - name: Upload Reports
